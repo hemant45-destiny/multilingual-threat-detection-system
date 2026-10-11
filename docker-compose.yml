@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  polyshield-gateway:
+    build: .
+    container_name: polyshield_enterprise_gateway
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    volumes:
+      - ./threat_detection_audit.db:/app/threat_detection_audit.db
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/metrics')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
