@@ -1,640 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PolyShield™ Enterprise | Multilingual Cyber-Threat Detection & SOC Triage</title>
-    <meta name="description" content="PolyShield Enterprise: AI-Powered Explainable Early-Warning Multilingual Cyber Threat Detection & Decision Support Gateway.">
-    <link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PolyShield™ Enterprise v3 | Multilingual Cyber-Threat Detection & SOC Triage</title>
+  <meta name="description" content="PolyShield Enterprise v3: AI-powered explainable multilingual threat detection, URL scanner, SOC triage, and threat intelligence repository for cybersecurity teams.">
+  <meta name="keywords" content="cybersecurity, threat detection, phishing, multilingual, SOC, URL scanner, threat intelligence">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Enterprise Header -->
-        <header>
-            <div class="brand-section">
-                <div class="logo-badge">🛡️</div>
-                <div class="brand-titles">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <h1>PolyShield™ Cyber Defense</h1>
-                        <span class="enterprise-badge">ENTERPRISE EDITION v2.4</span>
-                    </div>
-                    <p>Explainable Multilingual Cyber-Threat Intelligence, Risk Scoring & Incident Decision Support</p>
-                </div>
-            </div>
 
-            <div class="system-status-group">
-                <div class="status-indicator">
-                    <span class="pulse-dot"></span>
-                    <span style="font-size:0.82rem; font-weight:600; color:#34d399;">GATEWAY ONLINE</span>
-                </div>
-                <div class="metrics-strip">
-                    <div class="metric-pill">
-                        <div class="val" id="metricAccuracy">95.4%</div>
-                        <div class="lbl">Script Accuracy</div>
-                    </div>
-                    <div class="metric-pill">
-                        <div class="val" id="metricLatency">&lt; 25ms</div>
-                        <div class="lbl">SLA Latency</div>
-                    </div>
-                    <div class="metric-pill">
-                        <div class="val" id="metricFpr">2.1%</div>
-                        <div class="lbl">False Positive Rate</div>
-                    </div>
-                    <div class="metric-pill">
-                        <div class="val" id="metricF1">94.2%</div>
-                        <div class="lbl">Macro-F1 Score</div>
-                    </div>
-                </div>
-            </div>
-        </header>
+<div class="app-container">
 
-        <!-- Enterprise Navigation Bar -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" data-tab="tabInspector">
-                🔍 Live Threat Gateway & Scanner
-            </button>
-            <button class="tab-btn" data-tab="tabAnalyst">
-                🚨 Incident Queue & SOC Triage
-            </button>
-            <button class="tab-btn" data-tab="tabThreatIntel">
-                🌐 Global Threat Intel & IoC Repository
-            </button>
-            <button class="tab-btn" data-tab="tabCoordinator">
-                ⚙️ Security Posture & Policy Configuration
-            </button>
-            <button class="tab-btn" data-tab="tabAnalytics">
-                📊 Compliance & Analytics SLA
-            </button>
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════ -->
+  <header>
+    <div class="brand-section">
+      <div class="logo-badge">🛡️</div>
+      <div class="brand-titles">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <h1>PolyShield™ Cyber Defense</h1>
+          <span class="enterprise-badge">ENTERPRISE v3.0</span>
         </div>
-
-        <!-- MODULE 1: Live Threat Gateway & Scanner -->
-        <div id="tabInspector" class="tab-content">
-            <div class="dashboard-grid">
-                <!-- Ingestion & Simulator -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Inbound Communication Payload Ingestion</span>
-                        <span class="icon-badge">Live Triage Gateway</span>
-                    </div>
-
-                    <!-- Enterprise Scenarios Selector -->
-                    <div class="form-group">
-                        <label>Simulate Real-World Attack Scenarios:</label>
-                        <div class="presets-container" id="presetsContainer">
-                            <!-- Populated dynamically -->
-                        </div>
-                    </div>
-
-                    <form id="threatForm">
-                        <div class="form-group">
-                            <label for="inputSender">Sender Identity / Inbound Origin Header</label>
-                            <input type="text" id="inputSender" class="cyber-input" value="alert-service@external-sec.net" placeholder="e.g. alert@suspicious-domain.xyz">
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
-                            <div>
-                                <label for="inputSourceType" style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:6px;">Channel Protocol</label>
-                                <select id="inputSourceType" class="cyber-input">
-                                    <option value="email">Email Gateway (SMTP/IMAP)</option>
-                                    <option value="sms">SMS / Telephony API</option>
-                                    <option value="chat">Enterprise Messaging (Slack/Teams/Chat)</option>
-                                    <option value="threat_feed">Threat Feed / OSINT Stream</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="inputReliability" style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:6px;">Source Reliability (R factor: 0.0 - 1.0)</label>
-                                <input type="number" id="inputReliability" class="cyber-input" min="0" max="1" step="0.05" value="0.5">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputText">Payload Content (Supports English, Hindi, Marathi, Hinglish, Marathlish, Arabic)</label>
-                            <textarea id="inputText" class="cyber-input" placeholder="Paste inbound email body, SMS text, or chat snippet...">Your account will be closed today. Verify your password and OTP at this link: http://bit.ly/bank-verify</textarea>
-                        </div>
-
-                        <button type="button" id="btnAnalyze" class="btn-primary">
-                            ⚡ Deep Threat Analysis & Evidence Extraction
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Explainable Threat Intelligence Output -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Explainable Risk Evaluation & Actionable Triage</span>
-                        <span class="icon-badge" id="latencyVal">0.0 ms</span>
-                    </div>
-
-                    <div id="resultsContainer">
-                        <!-- Score Display Box -->
-                        <div class="score-box">
-                            <div class="score-number medium" id="scoreVal">66.2%</div>
-                            <div class="risk-badge medium" id="riskBadge">ALERT STATUS: MEDIUM RISK (66.2%)</div>
-                            <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);">
-                                Classified Threat Category: <strong style="color: #ffffff;" id="categoryVal">Phishing & Credential Lures</strong>
-                            </div>
-                            <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">
-                                Detected Language Profile: <span id="dialectVal" style="color: #a5b4fc; font-weight:600;">Standard English / Technical</span>
-                            </div>
-                        </div>
-
-                        <!-- Mathematical Formula Factors Breakdown -->
-                        <div style="margin-bottom: 20px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
-                                <h4 style="font-size: 0.88rem; color: var(--text-muted);">Mathematical Risk Decomposition: Risk = 100 × (0.30C + 0.25S + 0.15R + 0.15I + 0.10T + 0.05K)</h4>
-                            </div>
-                            <div class="formula-grid" id="formulaFactorsGrid">
-                                <div class="factor-card">
-                                    <div class="factor-code">C (Confidence 30%)</div>
-                                    <div class="factor-val" id="valFactorC">0.85</div>
-                                    <div class="factor-name">Model Calibration</div>
-                                </div>
-                                <div class="factor-card">
-                                    <div class="factor-code">S (Severity 25%)</div>
-                                    <div class="factor-val" id="valFactorS">0.82</div>
-                                    <div class="factor-name">Threat Taxonomy</div>
-                                </div>
-                                <div class="factor-card">
-                                    <div class="factor-code">R (Reliability 15%)</div>
-                                    <div class="factor-val" id="valFactorR">0.50</div>
-                                    <div class="factor-name">Origin Trust</div>
-                                </div>
-                                <div class="factor-card">
-                                    <div class="factor-code">I (IoC Factor 15%)</div>
-                                    <div class="factor-val" id="valFactorI">0.95</div>
-                                    <div class="factor-name">Indicator Severity</div>
-                                </div>
-                                <div class="factor-card">
-                                    <div class="factor-code">T (Recency 10%)</div>
-                                    <div class="factor-val" id="valFactorT">1.00</div>
-                                    <div class="factor-name">Freshness Factor</div>
-                                </div>
-                                <div class="factor-card">
-                                    <div class="factor-code">K (Corroboration 5%)</div>
-                                    <div class="factor-val" id="valFactorK">0.40</div>
-                                    <div class="factor-name">Cross-Feed Agreement</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Meaning Normalization Card -->
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">Multilingual Meaning Normalization Layer</h4>
-                            <div class="norm-box">
-                                <div style="margin-bottom: 6px;"><strong>Raw Payload:</strong> <span id="originalTextVal">Your account will be closed today. Verify your password and OTP at this link: http://bit.ly/bank-verify</span></div>
-                                <div><strong>Canonical Cyber Semantics:</strong> <span id="normalizedTextVal">Your [ACCOUNT_TARGET] will be [SUSPENSION_THREAT] [URGENT_DEADLINE]. Verify your [AUTHENTICATION_TOKEN] at this link: http://bit.ly/bank-verify</span></div>
-                            </div>
-                        </div>
-
-                        <!-- Extracted Indicators of Compromise -->
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">Extracted Indicators of Compromise (IoCs)</h4>
-                            <div class="cyber-table-container">
-                                <table class="cyber-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Type</th>
-                                            <th>Indicator Value</th>
-                                            <th>Reputation</th>
-                                            <th>MITRE Technique</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="iocsTableBody">
-                                        <tr>
-                                            <td><span class="ioc-badge url">URL</span></td>
-                                            <td>bit.ly/bank-verify</td>
-                                            <td><span style="color:var(--cyber-red); font-weight:600;">Malicious</span></td>
-                                            <td>T1566.002</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Triggered Rules & MITRE Techniques -->
-                        <div style="margin-bottom: 18px;">
-                            <h4 style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">Explainability & Security Rules Triggered</h4>
-                            <ul style="font-size: 0.88rem; margin-left: 20px; color: #cbd5e1;" id="topReasonsList">
-                                <li>URL Shortener Obfuscation Rule: Identified masked destination link (bit.ly/bank-verify)</li>
-                                <li>MITRE ATT&CK T1556: Input capture / Credential solicitation behavior pattern matched</li>
-                            </ul>
-                        </div>
-
-                        <!-- Recommended Action Card -->
-                        <div class="action-card medium" id="actionCard">
-                            <strong style="display:block; margin-bottom:4px; font-size:0.95rem;">Recommended Incident Response Playbook:</strong>
-                            <span id="actionText" style="font-size: 0.88rem;">Flag message with suspicious banner. Require multi-factor authentication check if link was opened.</span>
-                        </div>
-
-                        <!-- Analyst Explanation Feedback -->
-                        <div class="feedback-bar">
-                            <span>Analyst Quality Verification:</span>
-                            <button class="feedback-btn" onclick="submitFeedback('useful')">👍 Verified Accurate</button>
-                            <button class="feedback-btn" onclick="submitFeedback('incomplete')">⚠️ Needs Additional IoCs</button>
-                            <button class="feedback-btn" onclick="submitFeedback('misleading')">❌ Flag Inaccurate</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE 2: Incident Queue & SOC Triage -->
-        <div id="tabAnalyst" class="tab-content hidden">
-            <div class="card">
-                <div class="card-title">
-                    <span>Active Incident Queue & Triage Dashboard</span>
-                    <button class="btn-secondary" onclick="loadAlertsQueue()">🔄 Refresh Alert Queue</button>
-                </div>
-
-                <!-- Filter Controls -->
-                <div class="filter-bar">
-                    <select id="filterSeverity" class="cyber-input" onchange="filterAlerts()">
-                        <option value="ALL">All Severities</option>
-                        <option value="CRITICAL">Critical Severity</option>
-                        <option value="HIGH">High Severity</option>
-                        <option value="MEDIUM">Medium Severity</option>
-                        <option value="LOW">Low Severity</option>
-                    </select>
-                    <select id="filterCategory" class="cyber-input" onchange="filterAlerts()">
-                        <option value="ALL">All Threat Categories</option>
-                        <option value="phishing">Phishing</option>
-                        <option value="malware">Malware</option>
-                        <option value="ransomware">Ransomware</option>
-                        <option value="social_engineering">Social Engineering</option>
-                        <option value="credential_theft">Credential Theft</option>
-                        <option value="vulnerability_exploitation">Vulnerability Exploitation</option>
-                        <option value="benign_security_discussion">Benign</option>
-                    </select>
-                    <select id="filterLanguage" class="cyber-input" onchange="filterAlerts()">
-                        <option value="ALL">All Languages</option>
-                        <option value="English">English</option>
-                        <option value="Hindi">Hindi</option>
-                        <option value="Marathi">Marathi</option>
-                        <option value="Hinglish">Hinglish</option>
-                        <option value="Marathlish">Marathlish</option>
-                    </select>
-                    <input type="text" id="filterSearch" class="cyber-input" placeholder="Search message content or IoC..." oninput="filterAlerts()">
-                </div>
-
-                <!-- Alerts Table -->
-                <div class="cyber-table-container">
-                    <table class="cyber-table">
-                        <thead>
-                            <tr>
-                                <th>Incident ID</th>
-                                <th>Timestamp</th>
-                                <th>Language Profile</th>
-                                <th>Threat Category</th>
-                                <th>Risk Score</th>
-                                <th>Severity</th>
-                                <th>Disposition</th>
-                                <th>Triage Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="alertsQueueTableBody">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE 3: Global Threat Intel & IoC Repository -->
-        <div id="tabThreatIntel" class="tab-content hidden">
-            <div class="dashboard-grid">
-                <!-- Ingest New Threat Intel Sample -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Ingest & Label New Multilingual Threat Sample</span>
-                        <span class="icon-badge">Active Learning Pipeline</span>
-                    </div>
-                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
-                        Enterprise threat intelligence analysts can submit and label emerging multilingual phishing, malware, or extortion payloads to keep detection models calibrated against active adversary campaigns.
-                    </p>
-
-                    <form id="curateForm">
-                        <div class="form-group">
-                            <label>Inbound Threat Sample Text</label>
-                            <textarea id="curateText" class="cyber-input" style="height:90px;" placeholder="Enter regional or code-mixed adversary communication payload..."></textarea>
-                        </div>
-                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:15px;">
-                            <div>
-                                <label style="font-size:0.85rem; color:var(--text-muted);">Threat Taxonomy Class</label>
-                                <select id="curateCategory" class="cyber-input">
-                                    <option value="phishing">Phishing</option>
-                                    <option value="malware">Malware</option>
-                                    <option value="ransomware">Ransomware</option>
-                                    <option value="social_engineering">Social Engineering</option>
-                                    <option value="credential_theft">Credential Theft</option>
-                                    <option value="vulnerability_exploitation">Vulnerability Exploitation</option>
-                                    <option value="benign_security_discussion">Benign</option>
-                                    <option value="unknown_uncertain">Unknown / Uncertain</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="font-size:0.85rem; color:var(--text-muted);">Language / Script Profile</label>
-                                <select id="curateLanguage" class="cyber-input">
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi (Devanagari)</option>
-                                    <option value="Marathi">Marathi (Devanagari)</option>
-                                    <option value="Hinglish">Hinglish (Code-Mixed)</option>
-                                    <option value="Marathlish">Marathlish</option>
-                                    <option value="Arabic">Arabic</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-primary" onclick="submitCuratedSample()">
-                            ➕ Ingest Sample & Update Threat Model
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Global Indicators of Compromise (IoC) Explorer -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Extracted Threat Intelligence Indicators (IoCs)</span>
-                        <span class="icon-badge">Central Repository</span>
-                    </div>
-                    <div class="cyber-table-container" style="max-height: 400px; overflow-y: auto;">
-                        <table class="cyber-table">
-                            <thead>
-                                <tr>
-                                    <th>Indicator Value</th>
-                                    <th>Indicator Type</th>
-                                    <th>Risk Score</th>
-                                    <th>Reputation</th>
-                                </tr>
-                            </thead>
-                            <tbody id="researcherIocsBody">
-                                <!-- Populated dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE 4: Security Posture & Policy Configuration -->
-        <div id="tabCoordinator" class="tab-content hidden">
-            <div class="dashboard-grid">
-                <!-- Weight Recalibration Studio -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Risk Scoring Formula Recalibration Studio</span>
-                        <span class="icon-badge">Custom Posture</span>
-                    </div>
-                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
-                        Configure mathematical weights according to organizational security tolerance: Risk = 100 × (wC·C + wS·S + wR·R + wI·I + wT·T + wK·K)
-                    </p>
-
-                    <div style="display: flex; flex-direction: column; gap: 16px;">
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>C: Calibrated Model Confidence Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightC">30%</span>
-                            </div>
-                            <input type="range" id="rngC" min="10" max="50" value="30" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>S: Threat Category Severity Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightS">25%</span>
-                            </div>
-                            <input type="range" id="rngS" min="10" max="40" value="25" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>R: Inbound Source Reliability Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightR">15%</span>
-                            </div>
-                            <input type="range" id="rngR" min="5" max="30" value="15" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>I: Indicators of Compromise (IoC) Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightI">15%</span>
-                            </div>
-                            <input type="range" id="rngI" min="5" max="30" value="15" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>T: Temporal Freshness & Recency Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightT">10%</span>
-                            </div>
-                            <input type="range" id="rngT" min="0" max="25" value="10" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <div>
-                            <div style="display:flex; justify-content:space-between; font-weight:600; margin-bottom:4px; font-size:0.88rem;">
-                                <span>K: Threat Intelligence Corroboration Weight</span>
-                                <span style="color:#818cf8;" id="lblWeightK">5%</span>
-                            </div>
-                            <input type="range" id="rngK" min="0" max="15" value="5" class="cyber-input" style="width:100%;" oninput="updateWeightLabels()">
-                        </div>
-                        <button class="btn-primary" onclick="saveRecalibratedWeights()">Save & Apply Policy to Gateway</button>
-                    </div>
-                </div>
-
-                <!-- Auditable SOC Decision Log -->
-                <div class="card">
-                    <div class="card-title">
-                        <span>Regulatory Audit & Triage Decision History Log</span>
-                        <span class="icon-badge">NIST SP 800-30 / SOC 2 Traceable</span>
-                    </div>
-                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
-                        Full immutable ledger recording every triage disposition, analyst validation, and policy modification with cryptographic timestamps.
-                    </p>
-
-                    <div class="cyber-table-container" style="max-height: 420px; overflow-y: auto;">
-                        <table class="cyber-table">
-                            <thead>
-                                <tr>
-                                    <th>Timestamp</th>
-                                    <th>Analyst ID</th>
-                                    <th>Action</th>
-                                    <th>State Transition</th>
-                                    <th>Audit Justification</th>
-                                </tr>
-                            </thead>
-                            <tbody id="decisionLogsTableBody">
-                                <!-- Populated dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE 5: Compliance & Analytics SLA -->
-        <div id="tabAnalytics" class="tab-content hidden">
-            <div class="card">
-                <div class="card-title">
-                    <span>Enterprise Detection Benchmarks & Operational SLA</span>
-                    <span class="icon-badge">Empirical Performance Audit</span>
-                </div>
-
-                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
-                    <div style="background:rgba(10,15,30,0.7); padding:18px; border-radius:12px; border-left:4px solid var(--cyber-cyan);">
-                        <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Classification Accuracy</div>
-                        <div style="font-size:1.8rem; font-weight:700; color:#ffffff; font-family:var(--font-code);" id="matrixAcc">96.1%</div>
-                        <div style="font-size:0.8rem; color:#34d399; margin-top:4px;">Verified across 8 threat classes</div>
-                    </div>
-                    <div style="background:rgba(10,15,30,0.7); padding:18px; border-radius:12px; border-left:4px solid var(--primary-accent);">
-                        <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Macro-F1 Score</div>
-                        <div style="font-size:1.8rem; font-weight:700; color:#ffffff; font-family:var(--font-code);" id="matrixF1">94.2%</div>
-                        <div style="font-size:0.8rem; color:#a5b4fc; margin-top:4px;">Cross-lingual generalization</div>
-                    </div>
-                    <div style="background:rgba(10,15,30,0.7); padding:18px; border-radius:12px; border-left:4px solid var(--cyber-green);">
-                        <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Brier Calibration Loss</div>
-                        <div style="font-size:1.8rem; font-weight:700; color:#ffffff; font-family:var(--font-code);" id="matrixBrier">0.038</div>
-                        <div style="font-size:0.8rem; color:#34d399; margin-top:4px;">Near-optimal probability quality</div>
-                    </div>
-                    <div style="background:rgba(10,15,30,0.7); padding:18px; border-radius:12px; border-left:4px solid var(--cyber-amber);">
-                        <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Gateway Latency SLA</div>
-                        <div style="font-size:1.8rem; font-weight:700; color:#ffffff; font-family:var(--font-code);">&lt; 25 ms</div>
-                        <div style="font-size:0.8rem; color:#fbbf24; margin-top:4px;">Sub-second inline mail filtering</div>
-                    </div>
-                </div>
-
-                <div class="dashboard-grid">
-                    <div style="background:rgba(10,15,30,0.6); padding:20px; border-radius:12px; border:1px solid var(--border-color);">
-                        <h4 style="font-size:0.95rem; color:#ffffff; margin-bottom:12px;">Supported Regional Languages & Scripts</h4>
-                        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:#cbd5e1;">
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Devanagari Script (Hindi & Marathi)</span>
-                                <span style="color:#34d399; font-weight:600;">Full Support (Native)</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Romanized Hinglish (Code-Mixed Indic)</span>
-                                <span style="color:#34d399; font-weight:600;">Full Support (Canonical Mapping)</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Marathlish (Romanized Marathi Slang)</span>
-                                <span style="color:#34d399; font-weight:600;">Full Support (Canonical Mapping)</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>International English & Technical</span>
-                                <span style="color:#34d399; font-weight:600;">Full Support</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; padding-top:2px;">
-                                <span>Arabic Regional Script</span>
-                                <span style="color:#34d399; font-weight:600;">Active Recognition</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="background:rgba(10,15,30,0.6); padding:20px; border-radius:12px; border:1px solid var(--border-color);">
-                        <h4 style="font-size:0.95rem; color:#ffffff; margin-bottom:12px;">Threat Taxonomy Coverage</h4>
-                        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:#cbd5e1;">
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Phishing & Credential Lures</span>
-                                <span style="color:#818cf8; font-weight:600;">T1566 Spearphishing Link</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Malware & Trojan Distribution</span>
-                                <span style="color:#818cf8; font-weight:600;">T1566.001 Malicious Attachment</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Ransomware Extortion & Encryption</span>
-                                <span style="color:#818cf8; font-weight:600;">T1486 Data Encrypted for Impact</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:6px;">
-                                <span>Direct Credential / OTP Theft</span>
-                                <span style="color:#818cf8; font-weight:600;">T1556 Input Capture</span>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; padding-top:2px;">
-                                <span>CVE Vulnerability Exploitation</span>
-                                <span style="color:#818cf8; font-weight:600;">T1190 Exploit Public-Facing App</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Triage Window for SOC Analysts -->
-        <div id="alertModal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div>
-                        <h2 style="color:#ffffff; font-size:1.3rem;" id="modalAlertId">Incident Dossier: INC-2026-00127</h2>
-                        <span style="font-size:0.82rem; color:var(--text-muted);" id="modalTimestamp">Received: Oct 11, 2026</span>
-                    </div>
-                    <button class="modal-close-btn" onclick="closeAlertModal()">✕</button>
-                </div>
-
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:20px;">
-                    <div style="background:rgba(10,15,30,0.6); padding:16px; border-radius:10px; border:1px solid var(--border-color);">
-                        <strong style="font-size:0.85rem; color:#818cf8; display:block; margin-bottom:6px;">Raw Inbound Communication:</strong>
-                        <p style="font-size:0.9rem; line-height:1.5; color:#cbd5e1;" id="modalRawText"></p>
-                    </div>
-                    <div style="background:rgba(10,15,30,0.6); padding:16px; border-radius:10px; border:1px solid var(--border-color);">
-                        <strong style="font-size:0.85rem; color:#818cf8; display:block; margin-bottom:6px;">Canonical Semantic Representation:</strong>
-                        <p style="font-size:0.9rem; line-height:1.5; color:#cbd5e1; font-family:var(--font-code);" id="modalNormalizedText"></p>
-                    </div>
-                </div>
-
-                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:20px;">
-                    <div class="factor-card">
-                        <div class="factor-code">Threat Category</div>
-                        <div class="factor-val" style="font-size:1rem;" id="modalCategory">Phishing</div>
-                    </div>
-                    <div class="factor-card">
-                        <div class="factor-code">Calibrated Risk Score</div>
-                        <div class="factor-val" style="font-size:1.3rem;" id="modalRiskScore">78.0</div>
-                    </div>
-                    <div class="factor-card">
-                        <div class="factor-code">Language Profile</div>
-                        <div class="factor-val" style="font-size:0.95rem;" id="modalLanguage">Marathi-English</div>
-                    </div>
-                </div>
-
-                <div style="margin-bottom:20px;">
-                    <h4 style="font-size:0.9rem; color:var(--text-muted); margin-bottom:8px;">Extracted IoC Entities:</h4>
-                    <div class="cyber-table-container">
-                        <table class="cyber-table">
-                            <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Value</th>
-                                    <th>Reputation</th>
-                                    <th>MITRE</th>
-                                </tr>
-                            </thead>
-                            <tbody id="modalIocsBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div style="background:rgba(15,23,42,0.6); padding:16px; border-radius:10px; border:1px solid var(--border-color); margin-bottom:20px;">
-                    <h4 style="font-size:0.9rem; color:#818cf8; margin-bottom:12px;">Analyst Case Disposition & Validation</h4>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px;">
-                        <div>
-                            <label style="font-size:0.82rem; color:var(--text-muted); display:block; margin-bottom:4px;">Assign Disposition:</label>
-                            <select id="modalDispositionSelect" class="cyber-input">
-                                <option value="Pending Validation">Pending Validation</option>
-                                <option value="Investigating">Active Investigation</option>
-                                <option value="Escalated to Tier 2 SOC">Escalated to Tier 2 SOC</option>
-                                <option value="Confirmed Security Incident">Confirmed Security Incident</option>
-                                <option value="Closed - Benign False Positive">Closed - Benign False Positive</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="font-size:0.82rem; color:var(--text-muted); display:block; margin-bottom:4px;">Analyst Notes:</label>
-                            <input type="text" id="modalAnalystNotes" class="cyber-input" placeholder="Enter analyst findings or justification...">
-                        </div>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; gap:10px;">
-                        <button class="btn-primary" style="width:auto; padding:10px 20px;" onclick="saveModalDisposition()">💾 Save Analyst Verdict</button>
-                        <button class="btn-secondary" onclick="exportCaseDossier()">📥 Export Incident Report (JSON)</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <p>Explainable Multilingual Threat Intelligence · URL Scanner · Incident Triage · SOC Dashboard</p>
+      </div>
     </div>
 
-   <script src="app.js"></script>
+    <div class="system-status-group">
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <span style="font-size:0.82rem;font-weight:600;color:#34d399;">GATEWAY ONLINE</span>
+      </div>
+      <div class="metrics-strip">
+        <div class="metric-pill" data-tooltip="Script accuracy across 6 languages">
+          <div class="val" id="metricAccuracy">95.4%</div>
+          <div class="lbl">Script Accuracy</div>
+        </div>
+        <div class="metric-pill" data-tooltip="Average analysis latency">
+          <div class="val" id="metricLatency">&lt; 25ms</div>
+          <div class="lbl">SLA Latency</div>
+        </div>
+        <div class="metric-pill" data-tooltip="False positive rate">
+          <div class="val" id="metricFpr">2.1%</div>
+          <div class="lbl">False Positive Rate</div>
+        </div>
+        <div class="metric-pill" data-tooltip="Macro-F1 detection score">
+          <div class="val" id="metricF1">94.2%</div>
+          <div class="lbl">Macro-F1 Score</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION TABS
+  ═══════════════════════════════════════════════ -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" data-tab="tabInspector">🔍 Live Threat Scanner</button>
+    <button class="tab-btn" data-tab="tabScanner">🔗 URL / Link Scanner</button>
+    <button class="tab-btn" data-tab="tabDatasets">📂 Datasets & Threat Intel</button>
+    <button class="tab-btn" data-tab="tabAnalyst">🚨 Incident Queue & SOC</button>
+    <button class="tab-btn" data-tab="tabCoordinator">⚙️ Security Policy</button>
+    <button class="tab-btn" data-tab="tabAnalytics">📊 Analytics & Compliance</button>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 1: LIVE THREAT SCANNER
+  ═══════════════════════════════════════════════ -->
+  <div id="tabInspector" class="tab-content active">
+    <div class="dashboard-grid">
+
+      <!-- INPUT CARD -->
+      <div class="card">
+        <div class="card-title">
+          <span>Inbound Communication Payload Ingestion</span>
+          <span class="icon-badge">Live Triage Gateway</span>
+        </div>
+
+        <div class="form-group">
+          <label>Simulate Real-World Attack Scenarios</label>
+          <div class="presets-container" id="presetsContainer"></div>
+        </div>
+
+        <form id="threatForm">
+          <div class="form-group">
+            <label for="inputSender">Sender Identity / Inbound Origin Header</label>
+            <input type="text" id="inputSender" class="cyber-input" value="alert-service@external-sec.net" placeholder="e.g. alert@suspicious-domain.xyz">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+            <div>
+              <label for="inputSourceType" style="font-size:0.82rem;color:var(--text-muted);font-weight:600;display:block;margin-bottom:7px;text-transform:uppercase;letter-spacing:0.05em;">Channel Protocol</label>
+              <select id="inputSourceType" class="cyber-input">
+                <option value="email">Email Gateway (SMTP/IMAP)</option>
+                <option value="sms">SMS / Telephony API</option>
+                <option value="chat">Enterprise Messaging (Slack/Teams)</option>
+                <option value="threat_feed">Threat Feed / OSINT Stream</option>
+              </select>
+            </div>
+            <div>
+              <label for="inputReliability" style="font-size:0.82rem;color:var(--text-muted);font-weight:600;display:block;margin-bottom:7px;text-transform:uppercase;letter-spacing:0.05em;">Source Reliability (R: 0.0–1.0)</label>
+              <input type="number" id="inputReliability" class="cyber-input" min="0" max="1" step="0.05" value="0.5">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputText">Payload Content (EN · HI · MR · Hinglish · AR · Marathlish)</label>
+            <textarea id="inputText" class="cyber-input" style="min-height:130px;" placeholder="Paste email body, SMS text, or chat snippet…">Your account will be closed today. Verify your password and OTP at this link: http://bit.ly/bank-verify or call +91-9876543210 immediately.</textarea>
+          </div>
+
+          <button type="button" id="btnAnalyze" class="btn-primary">
+            ⚡ Deep Threat Analysis &amp; Evidence Extraction
+          </button>
+        </form>
+      </div>
+
+      <!-- OUTPUT / RESULTS CARD -->
+      <div class="card">
+        <div class="card-title">
+          <span>Explainable Risk Evaluation &amp; Actionable Triage</span>
+          <span class="icon-badge" id="latencyVal">0.0 ms</span>
+        </div>
+
+        <!-- Score Display -->
+        <div class="score-box">
+          <div class="score-number medium" id="scoreVal">—</div>
+          <div class="risk-badge medium" id="riskBadge">RUN ANALYSIS TO SEE VERDICT</div>
+          <div style="margin-top:10px;font-size:0.9rem;color:var(--text-muted);">
+            Classified Threat Category: <strong style="color:#fff;" id="categoryVal">—</strong>
+          </div>
+          <div id="langBadge" class="lang-chip" style="justify-content:center;">🌐 Language: —</div>
+        </div>
+
+        <!-- Evidence -->
+        <div class="evidence-section">
+          <h4>🔎 Extracted Evidence &amp; IOCs</h4>
+          <div class="evidence-grid" id="evidenceGrid">
+            <div class="empty-state">
+              <div class="es-icon">🛡️</div>
+              <div class="es-text">Submit a payload to begin analysis.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entity Chips -->
+        <div class="evidence-section" style="margin-top:14px;">
+          <h4>📌 Extracted Entities <span style="font-size:0.7rem;color:var(--text-dim)">(click URL to scan it)</span></h4>
+          <div class="entity-chips" id="entityChips"></div>
+        </div>
+
+        <!-- Highlighted Payload -->
+        <div class="evidence-section" style="margin-top:14px;">
+          <h4>🖍️ Highlighted Payload</h4>
+          <div class="highlighted-text" id="highlightedPayload" style="color:var(--text-muted);font-size:0.8rem;">Analyzed payload will appear here with threat indicators highlighted.</div>
+        </div>
+
+        <!-- Threat Categories -->
+        <div class="evidence-section" style="margin-top:14px;">
+          <h4>🗂️ Threat Category Breakdown</h4>
+          <div id="categoryGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 2: URL / LINK SCANNER
+  ═══════════════════════════════════════════════ -->
+  <div id="tabScanner" class="tab-content">
+    <div class="scanner-wrap">
+
+      <div class="card">
+        <div class="card-title">
+          <span>🔗 URL / Link Threat Scanner</span>
+          <span class="icon-badge">Rule-Based + External Checks</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">
+          Paste any URL or link to get an instant rule-based risk verdict, plus one-click verification on VirusTotal, URLhaus, PhishTank, Google Safe Browsing, and more.
+        </p>
+
+        <div class="form-group">
+          <label>URL or Link to Scan</label>
+          <div class="url-input-group">
+            <input type="text" id="scannerInput" class="cyber-input" placeholder="https://suspicious-site.xyz/login?verify=true" value="">
+            <button class="btn-primary" id="btnScan" style="width:auto;padding:10px 28px;">🔍 Scan Now</button>
+          </div>
+        </div>
+
+        <!-- Quick test examples -->
+        <div style="margin-top:4px;">
+          <span style="font-size:0.73rem;color:var(--text-muted);">Quick test: </span>
+          <span class="preset-chip" style="font-size:0.72rem;" onclick="document.getElementById('scannerInput').value='http://bit.ly/fake-bank-verify';runUrlScan()">🎣 Bit.ly Phish</span>
+          <span class="preset-chip" style="font-size:0.72rem;" onclick="document.getElementById('scannerInput').value='http://192.168.1.1/admin/login';runUrlScan()">📡 IP URL</span>
+          <span class="preset-chip" style="font-size:0.72rem;" onclick="document.getElementById('scannerInput').value='https://www.google.com';runUrlScan()">✅ Legit URL</span>
+          <span class="preset-chip" style="font-size:0.72rem;" onclick="document.getElementById('scannerInput').value='http://malware-drop.ru/exe.onion';runUrlScan()">🦠 Malware URL</span>
+        </div>
+      </div>
+
+      <!-- Verdict -->
+      <div id="scannerVerdict" class="scanner-verdict"></div>
+
+      <!-- Info card -->
+      <div class="card" style="background:rgba(56,189,248,0.03);">
+        <div class="card-title">
+          <span>ℹ️ How the Scanner Works</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;">
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--accent-cyan);margin-bottom:4px;">Rule-Based Detection</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Checks for URL shorteners, risky TLDs (.xyz .ru .onion), IP-based URLs, phishing keywords in the URL path, and excessive subdomains.</div>
+          </div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--accent-green);margin-bottom:4px;">External Verification</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Click-through links to VirusTotal (70+ AV engines), PhishTank, URLhaus, Google Safe Browsing, URLScan.io, and OTX AlienVault.</div>
+          </div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--accent-purple);margin-bottom:4px;">Risk Verdict</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Assigns a 0–100 risk score. Below 20 = Likely Safe, 20–49 = Suspicious, 50+ = Malicious based on weighted rule scoring.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 3: DATASETS & THREAT INTEL REPOSITORY
+  ═══════════════════════════════════════════════ -->
+  <div id="tabDatasets" class="tab-content">
+
+    <div class="datasets-header">
+      <div>
+        <h2>📂 Threat Intelligence &amp; Datasets Repository</h2>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">Curated public threat intel sources and academic research datasets for cybersecurity research and model training.</p>
+      </div>
+      <div class="datasets-filter">
+        <span class="filter-pill active" data-filter="all">All Sources</span>
+        <span class="filter-pill" data-filter="intel">🌐 Threat Intel</span>
+        <span class="filter-pill" data-filter="academic">🎓 Academic</span>
+      </div>
+    </div>
+
+    <!-- Threat Intel Section -->
+    <div class="datasets-section-label">🌐 Public Threat Intelligence Sources</div>
+    <div class="datasets-grid" id="datasetIntelGrid"></div>
+
+    <!-- Academic Section -->
+    <div id="datasetAcademicSection">
+      <div class="datasets-section-label">🎓 Academic & Research Datasets</div>
+      <div class="datasets-grid" id="datasetAcademicGrid"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="card" style="margin-top:24px;background:rgba(255,255,255,0.02);">
+      <div class="card-title"><span>🏷️ Badge Legend</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <span class="dc-badge free">FREE</span><span style="font-size:0.78rem;color:var(--text-muted);">No cost, open access</span>
+        <span class="dc-badge api">API</span><span style="font-size:0.78rem;color:var(--text-muted);">Programmatic access available</span>
+        <span class="dc-badge key">KEY</span><span style="font-size:0.78rem;color:var(--text-muted);">Requires API key registration</span>
+        <span class="dc-badge academic">ACADEMIC</span><span style="font-size:0.78rem;color:var(--text-muted);">Research / training dataset</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 4: INCIDENT QUEUE & SOC TRIAGE
+  ═══════════════════════════════════════════════ -->
+  <div id="tabAnalyst" class="tab-content">
+
+    <!-- SOC Stats -->
+    <div class="soc-stats">
+      <div class="soc-stat-card">
+        <div class="sv" style="color:var(--accent-red);" id="socCritical">0</div>
+        <div class="sl">🔴 Critical</div>
+      </div>
+      <div class="soc-stat-card">
+        <div class="sv" style="color:var(--accent-orange);" id="socHigh">0</div>
+        <div class="sl">🟠 High</div>
+      </div>
+      <div class="soc-stat-card">
+        <div class="sv" style="color:var(--accent-yellow);" id="socMedium">0</div>
+        <div class="sl">🟡 Medium</div>
+      </div>
+      <div class="soc-stat-card">
+        <div class="sv" style="color:var(--accent-green);" id="socLow">0</div>
+        <div class="sl">🟢 Low</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🚨 Active Incident Queue</span>
+        <span class="icon-badge">SOC Triage Console</span>
+      </div>
+      <div class="incident-queue" id="incidentQueue"></div>
+    </div>
+
+    <div class="dashboard-grid" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-title"><span>📋 Triage Actions</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <button class="btn-primary" onclick="showToast('Incident escalated to Tier-2 SOC analyst','success')">🔺 Escalate Selected to Tier-2</button>
+          <button class="btn-secondary" onclick="showToast('Incident marked as false positive','success')">✅ Mark as False Positive</button>
+          <button class="btn-secondary" onclick="showToast('Automated remediation playbook triggered','success')">🤖 Trigger Auto-Remediation</button>
+          <button class="btn-danger" onclick="showToast('Sender blocked at gateway level','success')">🚫 Block Sender at Gateway</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span>📊 Queue Summary</span></div>
+        <div class="category-row"><span class="cat-name">Total Incidents (Last 24h)</span><span class="cat-count" style="color:var(--accent-cyan)">247</span></div>
+        <div class="category-row"><span class="cat-name">Auto-Resolved</span><span class="cat-count" style="color:var(--accent-green)">189</span></div>
+        <div class="category-row"><span class="cat-name">Pending Analyst Review</span><span class="cat-count" style="color:var(--accent-yellow)">41</span></div>
+        <div class="category-row"><span class="cat-name">Escalated</span><span class="cat-count" style="color:var(--accent-orange)">12</span></div>
+        <div class="category-row"><span class="cat-name">False Positives</span><span class="cat-count" style="color:var(--text-muted)">5</span></div>
+        <div class="category-row"><span class="cat-name">Mean Time to Detect (MTTD)</span><span class="cat-count" style="color:var(--accent-cyan)">1.2 min</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 5: SECURITY POLICY CONFIG
+  ═══════════════════════════════════════════════ -->
+  <div id="tabCoordinator" class="tab-content">
+    <div class="policy-grid">
+
+      <div class="card">
+        <div class="card-title"><span>⚙️ Detection Engine Settings</span></div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Multilingual Script Detection</div>
+            <div class="ti-desc">Enable Hindi, Marathi, Arabic, Hinglish pattern matching</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">URL Shortener Expansion</div>
+            <div class="ti-desc">Flag and expand shortened URLs (bit.ly, tinyurl, etc.)</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">IP-Based URL Detection</div>
+            <div class="ti-desc">Flag URLs using raw IP addresses instead of domain names</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Darknet Address Detection</div>
+            <div class="ti-desc">Flag .onion and darknet URLs in payloads</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Sender Identity Spoofing Check</div>
+            <div class="ti-desc">Analyze sender patterns for impersonation signals</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🚨 Alert & Response Policy</span></div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Auto-Escalate Critical Threats</div>
+            <div class="ti-desc">Automatically push critical incidents to SOC Tier-2</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Auto-Block Malicious Senders</div>
+            <div class="ti-desc">Add high-risk senders to gateway blocklist automatically</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Real-Time SOC Notifications</div>
+            <div class="ti-desc">Push alerts to Slack/Teams/PagerDuty on high-risk detection</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">SIEM Log Export</div>
+            <div class="ti-desc">Forward all events to SIEM (Splunk/Sentinel/QRadar)</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="ti-name">Compliance Audit Logging</div>
+            <div class="ti-desc">Maintain immutable audit trail for ISO 27001 / SOC 2</div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🌐 Language & Channel Config</span></div>
+        <div class="form-group">
+          <label>Active Language Modules</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="entity-chip url" style="cursor:default;">English</span>
+            <span class="entity-chip email" style="cursor:default;">Hindi</span>
+            <span class="entity-chip ip" style="cursor:default;">Marathi</span>
+            <span class="entity-chip phone" style="cursor:default;">Hinglish</span>
+            <span class="entity-chip url" style="cursor:default;">Arabic</span>
+            <span class="entity-chip email" style="cursor:default;">Marathlish</span>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:16px;">
+          <label>Risk Threshold (Alert on ≥)</label>
+          <input type="range" min="10" max="90" value="35" class="cyber-input" style="padding:4px;" oninput="document.getElementById('thresholdVal').textContent=this.value+'%'">
+          <div style="font-size:0.85rem;color:var(--accent-cyan);font-weight:700;margin-top:4px;" id="thresholdVal">35%</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔗 Threat Feed Integration</span></div>
+        <div class="category-row"><span class="cat-name">PhishTank Feed</span><span class="cat-count" style="color:var(--accent-green)">✓ Active</span></div>
+        <div class="category-row"><span class="cat-name">URLhaus (abuse.ch)</span><span class="cat-count" style="color:var(--accent-green)">✓ Active</span></div>
+        <div class="category-row"><span class="cat-name">Feodo Tracker C2 IPs</span><span class="cat-count" style="color:var(--accent-green)">✓ Active</span></div>
+        <div class="category-row"><span class="cat-name">OTX AlienVault IOCs</span><span class="cat-count" style="color:var(--accent-yellow)">⚠ Pending Key</span></div>
+        <div class="category-row"><span class="cat-name">VirusTotal API</span><span class="cat-count" style="color:var(--accent-yellow)">⚠ Pending Key</span></div>
+        <div class="category-row"><span class="cat-name">AbuseIPDB</span><span class="cat-count" style="color:var(--accent-yellow)">⚠ Pending Key</span></div>
+        <div style="margin-top:14px;">
+          <button class="btn-primary" onclick="showToast('Feed synchronization triggered','success')">🔄 Sync All Threat Feeds</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 6: ANALYTICS & COMPLIANCE
+  ═══════════════════════════════════════════════ -->
+  <div id="tabAnalytics" class="tab-content">
+
+    <!-- KPI Cards -->
+    <div class="analytics-grid">
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-cyan);">12,847</div>
+        <div class="ac-lbl">Total Payloads Analyzed</div>
+        <div class="ac-trend up">↑ 18% vs last month</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-red);">3,291</div>
+        <div class="ac-lbl">Threats Detected</div>
+        <div class="ac-trend up">↑ 24% threat volume</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-green);">94.2%</div>
+        <div class="ac-lbl">Macro-F1 Detection Score</div>
+        <div class="ac-trend up">↑ 1.3% improvement</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-orange);">2.1%</div>
+        <div class="ac-lbl">False Positive Rate</div>
+        <div class="ac-trend down">↓ 0.4% reduction</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-purple);">1.2m</div>
+        <div class="ac-lbl">Mean Time to Detect</div>
+        <div class="ac-trend up">↓ 22s faster</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-val" style="color:var(--accent-yellow);">99.7%</div>
+        <div class="ac-lbl">SLA Uptime</div>
+        <div class="ac-trend up">Within SLA bounds</div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Threat Distribution -->
+      <div class="card">
+        <div class="card-title">
+          <span>📊 Threat Category Distribution</span>
+          <span class="icon-badge">Last 30 Days</span>
+        </div>
+        <div id="threatBars"></div>
+      </div>
+
+      <!-- Language Detection Stats -->
+      <div class="card">
+        <div class="card-title">
+          <span>🌐 Language Detection Stats</span>
+          <span class="icon-badge">Multilingual Breakdown</span>
+        </div>
+        <div class="threat-bar-wrap">
+          <div class="threat-bar-label"><span>English</span><span style="color:var(--accent-cyan)">58%</span></div>
+          <div class="threat-bar-track"><div class="threat-bar-fill" style="width:58%;background:var(--accent-cyan)"></div></div>
+        </div>
+        <div class="threat-bar-wrap">
+          <div class="threat-bar-label"><span>Hindi (हिन्दी)</span><span style="color:var(--accent-purple)">19%</span></div>
+          <div class="threat-bar-track"><div class="threat-bar-fill" style="width:19%;background:var(--accent-purple)"></div></div>
+        </div>
+        <div class="threat-bar-wrap">
+          <div class="threat-bar-label"><span>Hinglish</span><span style="color:var(--accent-yellow)">11%</span></div>
+          <div class="threat-bar-track"><div class="threat-bar-fill" style="width:11%;background:var(--accent-yellow)"></div></div>
+        </div>
+        <div class="threat-bar-wrap">
+          <div class="threat-bar-label"><span>Marathi (मराठी)</span><span style="color:var(--accent-orange)">7%</span></div>
+          <div class="threat-bar-track"><div class="threat-bar-fill" style="width:7%;background:var(--accent-orange)"></div></div>
+        </div>
+        <div class="threat-bar-wrap">
+          <div class="threat-bar-label"><span>Arabic (عربي)</span><span style="color:var(--accent-red)">5%</span></div>
+          <div class="threat-bar-track"><div class="threat-bar-fill" style="width:5%;background:var(--accent-red)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance -->
+    <div class="card" style="margin-top:0">
+      <div class="card-title"><span>📋 Compliance &amp; Regulatory Status</span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+        <div class="soc-stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-green);">✓ Compliant</div>
+          <div class="sl">ISO 27001</div>
+        </div>
+        <div class="soc-stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-green);">✓ Compliant</div>
+          <div class="sl">SOC 2 Type II</div>
+        </div>
+        <div class="soc-stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-green);">✓ Compliant</div>
+          <div class="sl">GDPR</div>
+        </div>
+        <div class="soc-stat-card" style="border-color:rgba(251,191,36,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-yellow);">⚠ Review</div>
+          <div class="sl">DPDP Act 2023</div>
+        </div>
+        <div class="soc-stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-green);">✓ Active</div>
+          <div class="sl">NIST CSF</div>
+        </div>
+        <div class="soc-stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="sv" style="font-size:1rem;color:var(--accent-green);">✓ Active</div>
+          <div class="sl">MITRE ATT&amp;CK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app-container -->
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
